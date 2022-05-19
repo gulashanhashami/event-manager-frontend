@@ -16,7 +16,7 @@ font-family: sans-serif;
    }
    
 a{
-    font-size: 2.5vh;
+    font-size: 1.2vw;
     font-weight: bold;
     text-decoration: none;
     color: white;
