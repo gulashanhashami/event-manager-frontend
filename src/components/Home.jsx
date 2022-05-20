@@ -32,7 +32,7 @@ import {
   #searchbar{
     width: 100%;
     height: 5vh;
-    padding-left:7%;
+    margin-left:7%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -98,7 +98,7 @@ h4:hover{
   height: 4.8vh;
   margin: auto;
   color: white;
-  font-size: 1.2vw;
+  font-size: 1vw;
   border-radius: .3vw;
   // font-weight: bold;
   background-color: blue;
@@ -120,6 +120,10 @@ h4:hover{
     border:.2vw solid blue;
    
   }
+  #btn1:hover{
+    background-color: white;
+  color: red;
+  }
   #btn2{
     color:white;
     font-size:1.2vw;
@@ -127,6 +131,10 @@ h4:hover{
     background-color: blue;
     border:.2vw solid blue;
    
+  }
+  #btn2:hover{
+    background-color: white;
+  color: red;
   }
 #btn3{
     color:white;
@@ -139,25 +147,50 @@ h4:hover{
   #btn3:hover{
     background-color: #310202;
   }
-  #sbarbox{
-    width: 40%;
+  .sbox{
     display: flex;
     flex-direction: row;
-    /* border:2px solid red; */
-  }
-  #sbtn{
-    color: white;
-    font-size:1.2vw;
-    font-weight: bold;
-    background-color: black;
-  }
-  #sbtn:hover{
-    background-color: #09fd09;
-  }
+ width: 45%;
+    height: 4.3vh; 
+    //  border: 2px solid red; 
+}
+.in{
+  width: 88%;
+  height: 3.5vh;
+  outline: none;
+}
+#btn{
+  width: 10%;
+  height: 4.3vh;
+  color: white;
+  font-size: 1vw;
+  background-color: black;
+  border: 2px solid black;
+}
+#btn:hover{
+background-color: white;
+color: red;
+}
+  // #sbarbox{
+  //   width: 40%;
+  //   display: flex;
+  //   flex-direction: row;
+  //   /* border:2px solid red; */
+  // }
+  // #sbtn{
+  //   color: white;
+  //   font-size:1.2vw;
+  //   font-weight: bold;
+  //   background-color: black;
+  // }
+  // #sbtn:hover{
+  //   background-color: #09fd09;
+  // }
 `;
 
   export const Home = () => {
     const [page, setPage]= useState(1);
+    const [sdata, setSd]= useState("");
     const { loading, data, error } = useSelector((store) => store.data); 
     const dispatch = useDispatch();
 var c=1;
@@ -169,13 +202,13 @@ var c=1;
     const getDatas = () => {
       
         dispatch(getDataLoading());
-        axios.get(`http://localhost:2345/events?_page=${page}&_limit=7`).then(({ data }) => {
+        axios.get(`https://hidden-gorge-89507.herokuapp.com?_page=${page}&_limit=7`).then(({ data }) => {
           dispatch(getDataSuccess(data));
         });
       };
 
       let handleRemove = (e) => {
-        axios.delete(`http://localhost:2345/events/${e.id}`)
+        axios.delete(`https://hidden-gorge-89507.herokuapp.com/${e._id}`)
             .then((res) => {
               getDatas()
             
@@ -219,7 +252,20 @@ var c=1;
          //  console.log(arr3)
        }
     }
-
+    const handleSearch=()=>{
+      var arr=data.filter((value)=>{
+        if(sdata===""){
+          // console.log(value)
+           return value;
+        }
+        else if(value.event_name.toLowerCase().includes(sdata.toLowerCase())){
+        
+           return value;
+        }
+      })
+      dispatch(getDataSuccess(arr));
+      console.log(arr)
+    }
      
       return (
         <div>
@@ -227,7 +273,12 @@ var c=1;
          
          
           <div id="searchbar">
-           
+          <div className="sbox">
+                    <input className="in" type="text" onChange={(e)=>setSd(e.target.value)} />
+                <button id="btn" onClick={()=>{
+                  handleSearch();
+                }}>Search</button>
+                </div>
             <select onChange={
              resultRate
 
@@ -278,24 +329,22 @@ var c=1;
                          <td>{item.end_date}</td>
                          <td>{item.event_rating}</td>
                          <td>
-                            <Link to={`/listing/${item.id}/detail`}>
-                              <button id="btn1">Details</button>
-                             </Link>
-                             </td>
-                         
-                             <td>
-                            <Link to={`/listing/${item.id}/edit`}>
-                              <button id="btn2">Edit</button>
-                             </Link>
-                             </td>
-                             <td>
                                <button id="btn3" onClick={()=>{
                                  handleRemove(item)
                                }}>
                                  Delete
                                </button>
                              </td>
-                        
+                             <td>
+                            <Link to={`${item._id}/edit`}>
+                              <button id="btn2">Edit</button>
+                             </Link>
+                             </td>
+                         <td>
+                            <Link to={`${item._id}/detail`}>
+                              <button id="btn1">Details</button>
+                             </Link>
+                             </td>
                         </tr>
                        
                     )

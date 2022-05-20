@@ -10,9 +10,11 @@ font-family: sans-serif;
        flex-direction: row;
        justify-content: space-between;
        align-items: center;
-       padding-left:10%;
  
        background-color: black;
+   }
+   .navhome{
+       margin-left:8%;
    }
    
 a{
@@ -25,7 +27,7 @@ a:hover{
     color: red;
 }
 #add{
-    margin-right: 20%;
+    margin-right: 8%;
 }
 `;
 export const Navbar=()=>{
@@ -35,8 +37,8 @@ export const Navbar=()=>{
         <div>
           <Stylediv>
             <div className="nav">
-             <Link to={"/"}>Home</Link>
-             <Link to={"/productlist"}>Add Event</Link>
+             <Link className="navhome" to={"/"}>Home</Link>
+             <Link to={"/addevent"}>Add Event</Link>
              <Link id="add" to={"/signup"}>Signup</Link>
             </div>
 
