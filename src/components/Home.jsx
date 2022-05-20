@@ -12,7 +12,7 @@ import {
   import styled from "styled-components";
 
   const ResultDiv = styled.div`
-  font-family: sans-serif;
+  font-family:   Arial, sans-serif;
 
 .filter{
   width: 20%;
@@ -52,8 +52,9 @@ import {
       margin-top: 7vh;
       // border: .1vw solid red;
   }
-  th, td{
-    padding: .6vh;
+
+  th, td{ 
+    padding: .8vh;
     border-bottom: .1vw solid grey;
 }
 th{
@@ -82,6 +83,9 @@ tr:hover{
 h4:hover{
   color:red;
 }
+h1{
+  font-size:1.6vw;
+}
 .rt{
   margin-left: 100px;
 }
@@ -93,25 +97,7 @@ h4:hover{
   margin:auto ;
  
 }
-.pagebtn{
-  width: 10vh;
-  height: 4.8vh;
-  margin: auto;
-  color: white;
-  font-size: 1vw;
-  border-radius: .3vw;
-  // font-weight: bold;
-  background-color: blue;
-  border: .2vw solid blue;
-}
-.pagebtn:hover{
-  background-color: white;
-  color: red;
-}
-// .sign{
-//   /* float: right; */
-//   margin-right: 15%;
-// }
+
 #btn1{
     color:white;
     font-size:1.2vw;
@@ -157,6 +143,8 @@ h4:hover{
 .in{
   width: 88%;
   height: 3.5vh;
+  padding-left:2%;
+  font-size: 1vw;
   outline: none;
 }
 #btn{
@@ -171,25 +159,24 @@ h4:hover{
 background-color: white;
 color: red;
 }
-  // #sbarbox{
-  //   width: 40%;
-  //   display: flex;
-  //   flex-direction: row;
-  //   /* border:2px solid red; */
-  // }
-  // #sbtn{
-  //   color: white;
-  //   font-size:1.2vw;
-  //   font-weight: bold;
-  //   background-color: black;
-  // }
-  // #sbtn:hover{
-  //   background-color: #09fd09;
-  // }
+.noMatch_main{
+  width:70%;
+  height: 50vh;
+  margin:auto;
+}
+.noMatch{
+  width:80%;
+  height: 80%;
+  font-size:1.6vw;
+  color:white;
+  margin-top:12%;
+  padding:3%;
+  background-color: teal;
+}
+
 `;
 
   export const Home = () => {
-    const [page, setPage]= useState(1);
     const [sdata, setSd]= useState("");
     const { loading, data, error } = useSelector((store) => store.data); 
     const dispatch = useDispatch();
@@ -197,12 +184,12 @@ var c=1;
 
     useEffect(() => {
       getDatas();
-    }, [page]);
+    }, []);
 
     const getDatas = () => {
       
         dispatch(getDataLoading());
-        axios.get(`https://hidden-gorge-89507.herokuapp.com?_page=${page}&_limit=7`).then(({ data }) => {
+        axios.get(`https://hidden-gorge-89507.herokuapp.com`).then(({ data }) => {
           dispatch(getDataSuccess(data));
         });
       };
@@ -239,18 +226,23 @@ var c=1;
       else if(e.target.value==="ghaziabad"){
         var arr4=data.filter(e=>e.city==="Ghaziabad");
         dispatch(getDataSuccess(arr4));
-         //  console.log(arr3)
+         //  console.log(arr4)
        }
        else if(e.target.value==="delhi"){
          var arr5=data.filter(e=>e.city==="Delhi");
         dispatch(getDataSuccess(arr5));
-         //  console.log(arr3)
+         //  console.log(arr5)
        }
-       else if(e.target.value==="bangalore"){
-         var arr6=data.filter(e=>e.city==="Bangalore");
+       else if(e.target.value==="bhadohi"){
+         var arr6=data.filter(e=>e.city==="Bhadohi");
         dispatch(getDataSuccess(arr6));
-         //  console.log(arr3)
+         //  console.log(arr6)
        }
+       else if(e.target.value==="noida"){
+        var arr7=data.filter(e=>e.city==="Noida");
+       dispatch(getDataSuccess(arr7));
+        //  console.log(arr7)
+      }
     }
     const handleSearch=()=>{
       var arr=data.filter((value)=>{
@@ -274,7 +266,7 @@ var c=1;
          
           <div id="searchbar">
           <div className="sbox">
-                    <input className="in" type="text" onChange={(e)=>setSd(e.target.value)} />
+                    <input className="in" type="text" onChange={(e)=>setSd(e.target.value)} placeholder="Search by event name" />
                 <button id="btn" onClick={()=>{
                   handleSearch();
                 }}>Search</button>
@@ -294,10 +286,19 @@ var c=1;
               <option value="varanasi">Varanasi</option>
               <option value="ghaziabad">Ghaziabad</option>
               <option value="delhi">Delhi</option>
-              <option value="bangalore">Bangalore</option>
+              <option value="noida">Noida</option>
+              <option value="bhadohi">Bhadohi</option>
             </select>
           </div> 
-         
+         {(data.length===0)? (
+           <div className="noMatch_main">
+             <h1>Loading...</h1>
+             <div className="noMatch">
+              <h4>Or search data did not match, please refresh it and search again</h4>
+           </div>
+           </div>
+          
+         ) : (
           <div className="box1">
             
           <table>
@@ -353,23 +354,7 @@ var c=1;
             </tbody>
          </table>  
           </div>
-          <div className="btndiv">
-          <button className="pagebtn"
-        onClick={() => {
-       setPage(page-1);
-        }}
-      >
-        Prev
-      </button>
-
-      <button className="pagebtn"
-        onClick={() => {
-      setPage(page+1);
-        }}
-      >
-        Next
-      </button>
-      </div>
+         )}
           </ResultDiv>
         </div>
       );
