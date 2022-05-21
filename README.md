@@ -58,9 +58,8 @@ Clone this Project
 
 # What did I Learn
 
-- By end of this project, I am able to learn how effective work can be done as a team when ideas are trajected in multiple spectrums.
+- By end of this project, I am able to learn how effective work can be done when ideas are trajected in multiple spectrums.
 
-- The coordination while presenting the project was a new experience for all the members of the team which was fun driven as well as professional learning.
 
-- Effective learning involves how we were able to suggest constructive feedback on each other’s work and debug before we present our project.
+- Effective learning involves how I was able to debug before we present our project.
 
