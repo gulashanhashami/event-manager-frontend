@@ -10,7 +10,8 @@
 - React.js
 - HTML
 - JavaScipt
-- CSS
+- CSS 
+- Styled-components
 - Redux
 
 # Run Locally
