@@ -311,9 +311,9 @@ var c=1;
                 <th>Start date</th>
                 <th>End date</th>
                 <th>Rating</th>
-                <th>Details</th>
-                <th>Edit</th>
                 <th>Delete</th>
+                <th>Edit</th>
+                <th>Details</th>
             </thead>
             <tbody>
                 {data.map((item)=>{
