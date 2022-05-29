@@ -26,6 +26,8 @@ Clone this Project
 - Now the project is ready just go and visit home page
 - Live demo: https://events-manager-assignment.netlify.app/
 
+Backend repo link of this project : https://github.com/gulashanhashami/eventManagerBackend.git
+
 # Screenshots
 
 > HOME PAGE
