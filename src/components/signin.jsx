@@ -77,7 +77,7 @@ let navigate=useNavigate();
           <ResultDiv> 
        <form onSubmit={(e)=>{
           e.preventDefault();
-          axios.post(`https://hidden-gorge-89507.herokuapp.com/login`, sign_data).then(({res})=>{
+          axios.post(`https://event-mgts.herokuapp.com/login`, sign_data).then(({res})=>{
            //  console.log(res.data)
               alert("Login successfully")
              navigate("/")
