@@ -56,7 +56,7 @@ export const EditEvent=()=>{
   const [newData, setNewData] = useState([]);
     let { _id } = useParams();
     useEffect(()=>{
-    axios.get(`https://hidden-gorge-89507.herokuapp.com/${_id}`).then((data)=>{
+    axios.get(`https://event-mgts.herokuapp.com/events/${_id}`).then((data)=>{
     //   console.log(data)
        setData(data.data.events);
     })
@@ -84,7 +84,7 @@ export const EditEvent=()=>{
         dispatch(editDataLoading());
         axios({
           method: "patch",
-          url: `https://hidden-gorge-89507.herokuapp.com/${_id}`,
+          url: `https://event-mgts.herokuapp.com/events/${_id}`,
           data: {
             _id: pdata._id,
             event_name: newData.event_name || pdata.event_name,

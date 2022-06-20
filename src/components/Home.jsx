@@ -178,7 +178,7 @@ color: red;
 
   export const Home = () => {
     const [sdata, setSd]= useState("");
-    const { loading, data, error } = useSelector((store) => store.data); 
+    const { loading, data, error } = useSelector((store) => store); 
     const dispatch = useDispatch();
 var c=1;
 
@@ -189,13 +189,14 @@ var c=1;
     const getDatas = () => {
       
         dispatch(getDataLoading());
-        axios.get(`https://hidden-gorge-89507.herokuapp.com`).then(({ data }) => {
+        axios.get(`https://event-mgts.herokuapp.com/events`).then(({ data }) => {
+            // console.log(data)
           dispatch(getDataSuccess(data));
         });
       };
 
       let handleRemove = (e) => {
-        axios.delete(`https://hidden-gorge-89507.herokuapp.com/${e._id}`)
+        axios.delete(`https://event-mgts.herokuapp.com/events/${e._id}`)
             .then((res) => {
               getDatas()
             
@@ -206,11 +207,11 @@ var c=1;
     }
     function resultRate(e){
       if(e.target.value==="low"){
-        var arr1=data.sort((a,b)=>a.event_rating-b.event_rating)
+        var arr1=data.data.sort((a,b)=>a.event_rating-b.event_rating)
         dispatch(getDataSuccess(arr1));
         //  console.log(arr1)
       }else{
-        var arr2=data.sort((a,b)=>b.event_rating-a.event_rating)
+        var arr2=data.data.sort((a,b)=>b.event_rating-a.event_rating)
         dispatch(getDataSuccess(arr2));
         // console.log(arr2)
       }
@@ -219,33 +220,33 @@ var c=1;
     function result1(e){
      
       if(e.target.value==="varanasi"){
-        var arr3=data.filter(e=>e.city==="Varanasi");
+        var arr3=data.data.filter(e=>e.city==="Varanasi");
        dispatch(getDataSuccess(arr3));
         //  console.log(arr3)
       }
       else if(e.target.value==="ghaziabad"){
-        var arr4=data.filter(e=>e.city==="Ghaziabad");
+        var arr4=data.data.filter(e=>e.city==="Ghaziabad");
         dispatch(getDataSuccess(arr4));
          //  console.log(arr4)
        }
        else if(e.target.value==="delhi"){
-         var arr5=data.filter(e=>e.city==="Delhi");
+         var arr5=data.data.filter(e=>e.city==="Delhi");
         dispatch(getDataSuccess(arr5));
          //  console.log(arr5)
        }
        else if(e.target.value==="bhadohi"){
-         var arr6=data.filter(e=>e.city==="Bhadohi");
+         var arr6=data.data.filter(e=>e.city==="Bhadohi");
         dispatch(getDataSuccess(arr6));
          //  console.log(arr6)
        }
        else if(e.target.value==="noida"){
-        var arr7=data.filter(e=>e.city==="Noida");
+        var arr7=data.data.filter(e=>e.city==="Noida");
        dispatch(getDataSuccess(arr7));
         //  console.log(arr7)
       }
     }
     const handleSearch=()=>{
-      var arr=data.filter((value)=>{
+      var arr=data.data.filter((value)=>{
         if(sdata===""){
           // console.log(value)
            return value;
@@ -256,8 +257,9 @@ var c=1;
         }
       })
       dispatch(getDataSuccess(arr));
-      console.log(arr)
+      // console.log(arr)
     }
+    // console.log(data.data)
      
       return (
         <div>
@@ -290,7 +292,7 @@ var c=1;
               <option value="bhadohi">Bhadohi</option>
             </select>
           </div> 
-         {(data.length===0)? (
+         {(data.data.length===0)? (
            <div className="noMatch_main">
              <h1>Loading...</h1>
              <div className="noMatch">
@@ -316,10 +318,10 @@ var c=1;
                 <th>Details</th>
             </thead>
             <tbody>
-                {data.map((item)=>{
+                {data.data.length&&data?.data.map((item)=>{
                     return (
                       
-                        <tr key={item.id}>
+                        <tr key={item._id}>
                          
                          <td>{c++}</td>
                          <td>{item.event_name}</td>

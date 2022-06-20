@@ -92,7 +92,7 @@ let navigate=useNavigate();
             alert("Password must contain six or more characters");
             return;
           }
-          axios.post(`https://hidden-gorge-89507.herokuapp.com/register`, sign_data).then((res)=>{
+          axios.post(`https://event-mgts.herokuapp.com/register`, sign_data).then((res)=>{
             // console.log(res)
               alert("You have registered successfully")
               navigate("/signin")
