@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginStart, loginSuccess } from "../redux/userReducer/actions";
 const ResultDiv = styled.div`
 font-family:   Arial, sans-serif;
 
@@ -62,7 +64,8 @@ p{
 `;
 export const Signin=()=>{
  const [sign_data, setSdata]= useState({});
-
+ const {loading, data, error} =useSelector((store)=> store.data.data);
+ const dispatch=useDispatch();
 let navigate=useNavigate();
 
  const handleChange=(e)=>{
@@ -77,8 +80,10 @@ let navigate=useNavigate();
           <ResultDiv> 
        <form onSubmit={(e)=>{
           e.preventDefault();
-          axios.post(`https://event-mgts.herokuapp.com/login`, sign_data).then(({res})=>{
+          dispatch(loginStart())
+          axios.post(`https://event-mgts.herokuapp.com/login`, sign_data).then(({data})=>{
            //  console.log(res.data)
+           dispatch(loginSuccess(data));
               alert("Login successfully")
              navigate("/")
              

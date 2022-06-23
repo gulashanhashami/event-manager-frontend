@@ -234,11 +234,11 @@ var c=1;
     }
     function resultRate(e){
       if(e.target.value==="low"){
-        var arr1=data.data.sort((a,b)=>a.event_rating-b.event_rating)
+        var arr1=data.data.data.sort((a,b)=>a.event_rating-b.event_rating)
         dispatch(getDataSuccess(arr1));
         //  console.log(arr1)
       }else{
-        var arr2=data.data.sort((a,b)=>b.event_rating-a.event_rating)
+        var arr2=data.data.data.sort((a,b)=>b.event_rating-a.event_rating)
         dispatch(getDataSuccess(arr2));
         // console.log(arr2)
       }
@@ -247,33 +247,33 @@ var c=1;
     function result1(e){
      
       if(e.target.value==="varanasi"){
-        var arr3=data.data.filter(e=>e.city==="Varanasi");
+        var arr3=data.data.data.filter(e=>e.city==="Varanasi");
        dispatch(getDataSuccess(arr3));
         //  console.log(arr3)
       }
       else if(e.target.value==="ghaziabad"){
-        var arr4=data.data.filter(e=>e.city==="Ghaziabad");
+        var arr4=data.data.data.filter(e=>e.city==="Ghaziabad");
         dispatch(getDataSuccess(arr4));
          //  console.log(arr4)
        }
        else if(e.target.value==="delhi"){
-         var arr5=data.data.filter(e=>e.city==="Delhi");
+         var arr5=data.data.data.filter(e=>e.city==="Delhi");
         dispatch(getDataSuccess(arr5));
          //  console.log(arr5)
        }
        else if(e.target.value==="bhadohi"){
-         var arr6=data.data.filter(e=>e.city==="Bhadohi");
+         var arr6=data.data.data.filter(e=>e.city==="Bhadohi");
         dispatch(getDataSuccess(arr6));
          //  console.log(arr6)
        }
        else if(e.target.value==="noida"){
-        var arr7=data.data.filter(e=>e.city==="Noida");
+        var arr7=data.data.data.filter(e=>e.city==="Noida");
        dispatch(getDataSuccess(arr7));
         //  console.log(arr7)
       }
     }
     const handleSearch=()=>{
-      var arr=data.data.filter((value)=>{
+      var arr=data.data.data.filter((value)=>{
         if(sdata===""){
           // console.log(value)
            return value;
@@ -286,7 +286,7 @@ var c=1;
       dispatch(getDataSuccess(arr));
       // console.log(arr)
     }
-    // console.log(data.data)
+    // console.log(data.data.data.data)
      
       return (
         <div>
@@ -319,7 +319,7 @@ var c=1;
               <option value="bhadohi">Bhadohi</option>
             </select>
           </div> 
-         {(data.data.length===0)? (
+         {(data.data.data.length===0)? (
            <div className="noMatch_main">
              <h1>Loading...</h1>
              <div className="noMatch">
@@ -345,7 +345,7 @@ var c=1;
                 <th>Details</th>
             </thead>
             <tbody>
-                {data.data.length&&data?.data.map((item)=>{
+                {data.data.data.length&&data?.data?.data.map((item)=>{
                     return (
                       
                         <tr key={item._id}>
