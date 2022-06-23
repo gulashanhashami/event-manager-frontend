@@ -173,25 +173,52 @@ color: red;
   padding:3%;
   background-color: teal;
 }
+.btndiv{
+  width: 30%;
+  height: 7.5vh;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  // border: 2px solid red; 
+}
+.pagebtn{
+  width: 27%;
+  height: 4vh;
+
+  color: white;
+  font-size: 1vw;
+  font-weight: bold;
+  border-radius: 2vw;
+  background-color: blue;
+  border: 2px solid blue;
+}
+
+.pagebtn:hover{
+  background-color: white;
+  color: red;
+}
 
 `;
 
   export const Home = () => {
     const [sdata, setSd]= useState("");
+    const [page, setPage] =useState(1);
     const { loading, data, error } = useSelector((store) => store); 
     const dispatch = useDispatch();
 var c=1;
 
     useEffect(() => {
       getDatas();
-    }, []);
+    }, [page]);
 
     const getDatas = () => {
       
         dispatch(getDataLoading());
-        axios.get(`https://event-mgts.herokuapp.com/events`).then(({ data }) => {
-            // console.log(data)
-          dispatch(getDataSuccess(data));
+        axios.get(`https://event-mgts.herokuapp.com/events?page=${page}&size=10`).then(({ data }) => {
+            // console.log(data.events)
+          dispatch(getDataSuccess(data.events));
         });
       };
 
@@ -354,7 +381,11 @@ var c=1;
                 })}
               
             </tbody>
-         </table>  
+         </table> 
+         <div className="btndiv">
+         <button className="pagebtn" onClick={()=>{setPage(page-1)}}>previous</button> 
+         <button className="pagebtn" onClick={()=>{setPage(page+1)}}>next</button>
+         </div>
           </div>
          )}
           </ResultDiv>
