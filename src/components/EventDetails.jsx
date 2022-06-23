@@ -56,7 +56,7 @@ let navigate=useNavigate();
       })
     }
    
-// console.log(data)
+// console.log(data.data)
 
 return (
     <div>
@@ -66,14 +66,14 @@ return (
             <div className="box">
               <h1 className="head">Event detail page</h1>
            <div className="text">
-           <p>Event name : {data.event_name}</p>
-            <p>Event Address : {data.event_address}</p>
-            <p>City : {data.city}</p>
-            <p>State : {data.state_name}</p>
-            <p>Start date : {data.start_date}</p>
-            <p>End date : {data.end_date}</p>
-            <p>Event rating : {data.event_rating}</p>
-            <p>Description : {data.description}</p>
+           <p>Event name : {data.data.event_name}</p>
+            <p>Event Address : {data.data.event_address}</p>
+            <p>City : {data.data.city}</p>
+            <p>State : {data.data.state_name}</p>
+            <p>Start date : {data.data.start_date}</p>
+            <p>End date : {data.data.end_date}</p>
+            <p>Event rating : {data.data.event_rating}</p>
+            <p>Description : {data.data.description}</p>
            </div>
            
           </div>

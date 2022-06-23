@@ -3,6 +3,8 @@
  import { useState } from "react";
  import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { registerStart, registerSuccess } from "../redux/userReducer/actions";
  const ResultDiv = styled.div`
  font-family:   Arial, sans-serif;
    
@@ -68,6 +70,8 @@ export const Signup=()=>{
 const [sign_data, setSdata]= useState({});
 const [mobile, setmob] =useState();
 const [pass, setPass] =useState();
+const {loading, data, error} =useSelector((store)=> store.data.data);
+const dispatch=useDispatch();
 let navigate=useNavigate();
 
   const handleChange=(e)=>{
@@ -83,6 +87,7 @@ let navigate=useNavigate();
            <ResultDiv> 
            
         <form onSubmit={(e)=>{
+           dispatch(registerStart());
           e.preventDefault();
           if(mobile!==10){
               alert("Please enter 10 digits mobile number");
@@ -92,8 +97,9 @@ let navigate=useNavigate();
             alert("Password must contain six or more characters");
             return;
           }
-          axios.post(`https://event-mgts.herokuapp.com/register`, sign_data).then((res)=>{
+          axios.post(`https://event-mgts.herokuapp.com/register`, sign_data).then(({data})=>{
             // console.log(res)
+            dispatch(registerSuccess(data));
               alert("You have registered successfully")
               navigate("/signin")
               
