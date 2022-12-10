@@ -97,7 +97,7 @@ let navigate=useNavigate();
             alert("Password must contain six or more characters");
             return;
           }
-          axios.post(`https://event-mgts.herokuapp.com/register`, sign_data).then(({data})=>{
+          axios.post(`https://eventbackend.onrender.com/register`, sign_data).then(({data})=>{
             // console.log(res)
             dispatch(registerSuccess(data));
               alert("You have registered successfully")
