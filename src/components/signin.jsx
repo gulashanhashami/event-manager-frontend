@@ -81,7 +81,7 @@ let navigate=useNavigate();
        <form onSubmit={(e)=>{
           e.preventDefault();
           dispatch(loginStart())
-          axios.post(`https://event-mgts.herokuapp.com/login`, sign_data).then(({data})=>{
+          axios.post(`https://eventbackend.onrender.com/login`, sign_data).then(({data})=>{
            //  console.log(res.data)
            dispatch(loginSuccess(data));
               alert("Login successfully")

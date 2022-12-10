@@ -49,7 +49,7 @@ let navigate=useNavigate();
 
     const getdata_p=()=>{
       dispatch(detailsDataLoading());
-      axios.get(`https://event-mgts.herokuapp.com/events/${_id}`).then((data)=>{
+      axios.get(`https://eventbackend.onrender.com/events/${_id}`).then((data)=>{
         // console.log(data)
           dispatch(detailsDataSuccess(data.data.events));
         

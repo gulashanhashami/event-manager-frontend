@@ -73,7 +73,7 @@ const handleChange=(e)=>{
        <form onSubmit={(e)=>{
           
            e.preventDefault();
-           axios.post(`https://event-mgts.herokuapp.com/events`, pdata).then((res)=>{
+           axios.post(`https://eventbackend.onrender.com/events`, pdata).then((res)=>{
               setData({
                 event_name:"",
                 event_address:"",

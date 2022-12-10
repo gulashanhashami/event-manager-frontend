@@ -216,14 +216,14 @@ var c=1;
     const getDatas = () => {
       
         dispatch(getDataLoading());
-        axios.get(`https://event-mgts.herokuapp.com/events?page=${page}&size=10`).then(({ data }) => {
+        axios.get(`https://eventbackend.onrender.com/events?page=${page}&size=10`).then(({ data }) => {
             // console.log(data.events)
           dispatch(getDataSuccess(data.events));
         });
       };
 
       let handleRemove = (e) => {
-        axios.delete(`https://event-mgts.herokuapp.com/events/${e._id}`)
+        axios.delete(`https://eventbackend.onrender.com/events/${e._id}`)
             .then((res) => {
               getDatas()
             
