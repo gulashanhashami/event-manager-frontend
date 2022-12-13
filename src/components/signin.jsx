@@ -42,6 +42,7 @@ p{
   #btn{
       width: 80%;
       height: 16%;
+      cursor: pointer;
       color: white;
       border-radius: .3vw;
       background-color: green;

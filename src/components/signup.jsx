@@ -42,6 +42,7 @@ form{
    #btn{
        width: 81%;
        height: 12%;
+       cursor: pointer;
        color: white;
        font-size:1.2vw;
        font-weight: bold;
