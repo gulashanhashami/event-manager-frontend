@@ -230,7 +230,7 @@ var c=1;
         axios.delete(`https://eventbackend.onrender.com/events/${e._id}`)
             .then((res) => {
               getDatas()
-            
+             alert("Deleted successfully");
             })
             .catch((err) => {
                console.log(err);
@@ -364,7 +364,10 @@ var c=1;
                          <td>{item.event_rating}</td>
                          <td>
                                <button id="btn3" onClick={()=>{
+                                let confirm=window.confirm("Are you sure you want to delete it?");
+                                if(confirm){
                                  handleRemove(item)
+                                }
                                }}>
                                  Delete
                                </button>
