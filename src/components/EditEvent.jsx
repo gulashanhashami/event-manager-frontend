@@ -99,7 +99,7 @@ export const EditEvent=()=>{
           },
         }).then((res) => {
           dispatch(editDataSuccess());
-          
+          alert("Edited successfully");
         });
       }
 return loading ? (

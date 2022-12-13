@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 const Stylediv=styled.div`
-font-family:   Arial, sans-serif;
+font-family:   sans-serif;
  .title{
      margin: auto;
      width: 45%;
@@ -85,6 +85,9 @@ const handleChange=(e)=>{
                   event_rating:"",
                   description:"",
               })
+              alert("Added successfully")
+           }).catch((err)=>{
+             console.log("err",err);
            })
        }}>
        <p>Event name</p>
