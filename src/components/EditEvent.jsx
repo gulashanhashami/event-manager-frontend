@@ -35,6 +35,7 @@ p{
 }
 #btn{
     width: 30%;
+    cursor: pointer;
     height: 4.5vh;
     font-weight: bold;
     font-size:1.2vw;

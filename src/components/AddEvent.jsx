@@ -38,6 +38,7 @@ font-family:   Arial, sans-serif;
   #btn{
       width: 30%;
       height: 4.5vh;
+      cursor: pointer;
       font-weight: bold;
       font-size:1.2vw;
       background-color: green;

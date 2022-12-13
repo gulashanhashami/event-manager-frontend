@@ -100,6 +100,7 @@ h1{
 
 #btn1{
     color:white;
+    cursor: pointer;
     font-size:1.2vw;
     border-radius: .3vw;
     background-color: blue;
@@ -112,6 +113,7 @@ h1{
   }
   #btn2{
     color:white;
+    cursor: pointer;
     font-size:1.2vw;
     border-radius: .3vw;
     background-color: blue;
@@ -124,6 +126,7 @@ h1{
   }
 #btn3{
     color:white;
+    cursor: pointer;
     font-size:1.2vw;
     border-radius: .3vw;
     background-color: red;
@@ -149,6 +152,7 @@ h1{
 }
 #btn{
   width: 10%;
+  cursor: pointer;
   height: 4.3vh;
   color: white;
   font-size: 1vw;
@@ -186,7 +190,7 @@ color: red;
 .pagebtn{
   width: 27%;
   height: 4vh;
-
+   cursor: pointer;
   color: white;
   font-size: 1vw;
   font-weight: bold;
