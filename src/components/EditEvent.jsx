@@ -7,7 +7,7 @@ import { editDataLoading, editDataSuccess } from "../redux/actions";
 import styled from "styled-components";
 
   const ResultDiv = styled.div`
-  font-family:   Arial, sans-serif;
+  font-family:   sans-serif;
   
   form{
     width: 45%;
