@@ -12,7 +12,7 @@ import {
   import styled from "styled-components";
 
   const ResultDiv = styled.div`
-  font-family:   Arial, sans-serif;
+  font-family:   sans-serif;
 
 .filter{
   width: 20%;
@@ -221,11 +221,11 @@ var c=1;
       
         dispatch(getDataLoading());
         axios.get(`https://eventbackend.onrender.com/events?page=${page}&size=10`).then(({ data }) => {
-            // console.log(data.events)
+            // console.log("data",data.events))
+           
           dispatch(getDataSuccess(data.events));
         });
       };
-
       let handleRemove = (e) => {
         axios.delete(`https://eventbackend.onrender.com/events/${e._id}`)
             .then((res) => {
